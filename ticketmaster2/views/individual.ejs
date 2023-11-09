@@ -1,0 +1,48 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="individual content">
+    <h2>Name: <%= patient.name %></h2>
+    <div class="indcontent">
+      <p>Description: <%= patient.description %></p>
+      <p>Case: <%= patient.casenumber %></p>
+      <p>Time: <%= patient.time %></p>
+      <p>Date: <%= patient.date %></p>
+      <p>Age: <%= patient.age %></p>
+      <p>Phone Number: <%= patient.phonenumber %></p>
+      <p>Unique ID: <%= patient._id %></p>
+    </div>
+    <a class="delete" data-doc="<%= patient._id %>">delete</a>
+    <a class="edit" href="/individual/update/<%= patient._id %>" data-update="<%= patient._id %>">update</a>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/appointments/${trashcan.dataset.doc}`;
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+
+    const pencil = document.querySelector('a.edit');
+    pencil.addEventListener('click', (e) => {
+      const endpoint = `/individual/update/${pencil.dataset.update}`;
+      fetch(endpoint, {
+        method: 'GET',
+      })
+      .then(() => {})
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+</body>
+</html>

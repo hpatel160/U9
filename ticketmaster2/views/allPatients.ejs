@@ -1,0 +1,34 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="appointments content">
+    <h2>All Events</h2>
+
+    <% if (apps.length > 0) { %>
+      <form class="search" action="/individual/search/" method="post">
+        <input type="text" name="name" />
+        <input class="button "type="submit" value="search by name"/>
+    </form>
+    <form class="search" action="/individual/searchbyphone/" method="post">
+      <input type="text" name="name" />
+      <input class="button "type="submit" value="search by phone"/>
+  </form> 
+      <% apps.forEach(app => { %>
+        <a class="single" href="/appointments/<%= app._id %>">
+          <h3 class="title"><%= app.name %></h3>
+          <p class="snippet">Case: <%= app.casenumber %></p>
+          <p class="snippet">Date: <%= app.date %></p>
+          <p class="snippet">Time: <%= app.time %></p>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>There are no appointments to display...</p>
+    <% } %>
+  </div>
+  
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
