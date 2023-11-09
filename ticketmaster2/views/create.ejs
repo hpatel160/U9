@@ -1,0 +1,29 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="create-appointment content">
+    <form action="/appointments" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="case">Unique ID:</label>
+      <input type="text" id="number" name="casenumber">
+      <!-- <label for="age">Age:</label>
+      <input type="text" id="age" name="age" required> -->
+      <!-- <label for="case">Phone Number:</label>
+      <input type="text" id="age" name="phonenumber" required> -->
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+      <label for="time">Time:</label>
+      <input type="time" id="time" name="time" required>
+      <label for="body">Description:</label>
+      <textarea type="text" id="body" name="description" required></textarea>
+      <button>Submit</button>
+    </form>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>

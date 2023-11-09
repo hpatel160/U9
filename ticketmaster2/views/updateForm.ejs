@@ -1,0 +1,41 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="update-appointment content">
+    <form action="/individual/update/<%= patient._id %>" method="post">
+      <label for="name" >Name:</label>
+      <input type="text" id="name" value ="<%= patient.name %>" name="name" required>
+      <label for="case">Unique ID:</label>
+      <input type="text" id="number" value="<%= patient.casenumber %>" name="casenumber">
+      <!-- <label for="age">Age:</label>
+      <input type="text" id="age" value="<%= patient.age %>" name="age" required>
+      <label for="case">Phone Number:</label>
+      <input type="text" id="age" value="<%= patient.phonenumber %>" name="phonenumber" required> -->
+      <label for="date">Date:</label>
+      <input type="date" id="date" value="<%= patient.date %>" name="date" required>
+      <label for="time">Time:</label>
+      <input type="time" id="time" value="<%= patient.time %>" name="time" required>
+      <label for="body">Description:</label>
+      <textarea type="text" id="body" name="description" required> <%= patient.description %> </textarea>
+      <button>Submit</button>
+    </form>
+  </div>
+
+  <!-- <script>
+    const pencil = document.querySelector('button');
+    pencil.addEventListener('click', (e) => {
+      const endpoint = `/individual/update/${pencil.dataset.update}`;
+      fetch(endpoint, {
+        method: "",
+      })
+      .then(() => {})
+      .catch(err => console.log(err));
+    });
+  </script> -->
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
